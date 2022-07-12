@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -15,7 +16,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -33,11 +36,29 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation libraries.room_ktx
+    implementation libraries.room_runtime
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.0'
+    kapt libraries.room_compiler
+    implementation libraries.okhttp3_logging_interceptor
+    implementation libraries.retrofit2_converter_scalars
+    implementation libraries.swiperefreshlayout
+    implementation libraries.cicerone
+    implementation libraries.dagger
+    kapt libraries.dagger_compiler
+    implementation libraries.retrofit
+    implementation libraries.retrofit_converter_gson
+    implementation libraries.coroutines_core
+    implementation libraries.coroutines_android
+    implementation libraries.lifecycle_viewmodel
+    implementation libraries.recyclerview
+    implementation libraries.core_ktx
+    implementation libraries.appcompat
+    implementation libraries.google_material
+    implementation libraries.constraintlayout
+    implementation libraries.legacy_support
+    implementation libraries.kotlin_stdlib
+    implementation libraries.fragment_ktx
+    testImplementation libraries.junit
+    androidTestImplementation libraries.ext_junit
 }
